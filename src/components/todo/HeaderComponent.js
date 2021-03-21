@@ -11,7 +11,7 @@ class HeaderComponent extends Component {
      
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-          <div><a>mynspluto</a></div>
+          <div><a href="https://www.naver.com">mynspluto</a></div>
           <ul className="navbar-nav">
             {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/mynspluto">Home</Link></li>}
             {isUserLoggedIn && <li><Link className="nav-link" to="/todos">Todos</Link></li>}
