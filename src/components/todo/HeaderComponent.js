@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import AuthenticationService from './AuthenticationService'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import {withRouter} from 'react-router'
+import { Link } from 'react-router-dom'
 
 class HeaderComponent extends Component {
   
@@ -12,7 +11,7 @@ class HeaderComponent extends Component {
      
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-          <div><a href>mynspluto</a></div>
+          <div><a>mynspluto</a></div>
           <ul className="navbar-nav">
             {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/mynspluto">Home</Link></li>}
             {isUserLoggedIn && <li><Link className="nav-link" to="/todos">Todos</Link></li>}

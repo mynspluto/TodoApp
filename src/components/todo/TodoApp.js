@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import AuthenticationService from './AuthenticationService'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import AuthenticatedRoute from'./AuthenticatedRoute'
 import LoginComponent from './LoginComponent'
 import ListTodosComponent from './ListTodosComponent'
@@ -35,20 +34,20 @@ class TodoApp extends Component {
 }
 
 
-function ShowInvalidCredentials(props) {
-  console.log(props.hasLoginFailed);
-  if (props.hasLoginFailed) {
-    return <div>Invalid Credentials</div>
-  }
-  return null
-}
+// function ShowInvalidCredentials(props) {
+//   console.log(props.hasLoginFailed);
+//   if (props.hasLoginFailed) {
+//     return <div>Invalid Credentials</div>
+//   }
+//   return null
+// }
 
-function ShowLoginSuccessMessage(props) {
-  console.log(props)
-  if (props.show) {
-    return <div>Login Successful</div>
-  }
-  return null
-}
+// function ShowLoginSuccessMessage(props) {
+//   console.log(props)
+//   if (props.show) {
+//     return <div>Login Successful</div>
+//   }
+//   return null
+// }
 
 export default TodoApp
