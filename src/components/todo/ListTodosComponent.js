@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import TodoDataService from '../../api/todo/TodoDataService'
 import AuthenticationService from './AuthenticationService'
+import moment from 'moment'
 
 class ListTodosComponent extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class ListTodosComponent extends Component {
 
     this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
     this.updateTodoClicked = this.updateTodoClicked.bind(this)
+    this.addTodoClicked = this.addTodoClicked.bind(this)
     this.refreshTodos = this.refreshTodos.bind(this)
   }
 
@@ -63,6 +65,11 @@ class ListTodosComponent extends Component {
     //   )
   }
 
+  addTodoClicked() {
+    console.log('addclicked')
+    this.props.history.push('/todos/-1')
+  }
+
   render() {
     return (
       <div>
@@ -76,6 +83,8 @@ class ListTodosComponent extends Component {
                 <th>description</th>
                 <th>Target Date</th>
                 <th>Is Completed?</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -85,7 +94,7 @@ class ListTodosComponent extends Component {
                     <tr>
                       <td>{todo.id}</td>
                       <td>{todo.description}</td>
-                      <td>{todo.targetDate.toString()}</td>
+                      <td>{moment(todo.targetDate).format('YYYY-MM-DD')}</td>
                       <td>{todo.done.toString()}</td>
                       <td><button className="btn btn-success" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
                       <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
@@ -96,6 +105,9 @@ class ListTodosComponent extends Component {
               }
             </tbody>
           </table>
+          <dlv className="row">
+            <button className="btn btn-success" onClick={()=>this.addTodoClicked()}>Add</button>
+          </dlv>
         </div>
       </div>
     )
