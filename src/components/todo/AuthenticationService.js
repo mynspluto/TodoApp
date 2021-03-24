@@ -10,7 +10,7 @@ class AuthenticationService {
      //{headers: this.createBasicAuthToken(username, password)})
   }
 
-  executJwtAuthenticationService(username, password) {
+  executeJwtAuthenticationService(username, password) {
     console.log('excute')
     
     return axios.post('http://localhost:8080/authenticate', 
@@ -29,10 +29,19 @@ class AuthenticationService {
     
   }
 
+  createJWTToken(token) {
+    return 'Bearer ' + token
+  }
+
   registerSuccessfulLogin(username, password){
     //console.log('auth register')
     sessionStorage.setItem('authenticatedUser', username);
-    this.setupAxiosInterceptors()
+    this.setupAxiosInterceptors(this.createBasicAuthToken(username,password))
+  }
+
+  registerSuccessfulLoginForJwt(username, token) {
+    sessionStorage.setItem('authenticatedUser', username);
+    this.setupAxiosInterceptors(this.createJWTToken(token))
   }
 
   logout() {
@@ -53,18 +62,14 @@ class AuthenticationService {
     return user
   }
   
-  setupAxiosInterceptors() {
+  setupAxiosInterceptors(token) {
     console.log('setupAxios')
-    let username = 'mynspluto'
-    let password = '123'
-
-    let basicAuthHeader = 'Basic ' + window.btoa(username + ":" + password)
 
     axios.interceptors.request.use(
       (config) => {
         if(this.isUserLogged()) {
           //console.log('login 됨')
-          config.headers.authorization = basicAuthHeader
+          config.headers.authorization = token
         }               
         
         return config
